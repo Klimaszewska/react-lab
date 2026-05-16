@@ -1,6 +1,8 @@
 import './App.css';
 import 'milligram';
 import {useState} from "react";
+import LoginForm from "./LoginForm";
+import MainPage from "./MainPage";
 
 function App() {
     let [email, setEmail] = useState('');
@@ -17,7 +19,7 @@ function App() {
         }
     }
 
-    function handleChange(event) {
+    function handleEmail(event) {
         let emailInput = event.target.value;
         setEmail(emailInput);
         validateEmailLength(emailInput);
@@ -36,19 +38,16 @@ function App() {
     return (
         <section>
             {!isLoggedIn &&
-                <section>
-                    <h1>Class enrollment system</h1>
-                    <h2>Log in with your email: </h2>
-                    <div>{validation}</div>
-                    <input type="text" onChange={handleChange}/>
-                    <button disabled={!email} onClick={login}>Log in</button>
-                </section>
+                <LoginForm
+                    email={email}
+                    validation={validation}
+                    handleEmail={handleEmail}
+                    login={login}/>
             }
             {isLoggedIn &&
-                <section>
-                    <h1>Welcome, {email}!</h1>
-                    <button onClick={logout}>Log out</button>
-                </section>
+                <MainPage
+                email={email}
+                logout={logout}/>
             }
         </section>
     );
