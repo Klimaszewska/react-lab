@@ -1,4 +1,5 @@
 import './App.css';
+import 'milligram';
 import {useState} from "react";
 
 function App() {
