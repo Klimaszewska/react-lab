@@ -7,11 +7,11 @@ function App() {
 
     function validateEmailLength(emailInput) {
         if (emailInput.length < 5) {
-            setValidation("Ale masz krótki adres!")
+            setValidation("The email is too short!")
         } else if (emailInput.length > 5 && emailInput.length < 35) {
-            setValidation("Email jest dobry!")
+            setValidation("The email is ok")
         } else {
-            setValidation("Email jest za długi!")
+            setValidation("The email is too long!")
         }
     }
 
@@ -21,12 +21,17 @@ function App() {
         validateEmailLength(emailInput);
     }
 
+    function showAlert() {
+        alert("The email is: " + email);
+    }
+
     return (
         <div>
-            <h1>System do zapisów na zajęcia</h1>
-            <h2>Twój e-mail to: {email}</h2>
+            <h1>Class enrollment system</h1>
+            <h2>Your email: {email}</h2>
             <div>{validation}</div>
             <input type="text" value={email} onChange={handleChange} />
+            <button onClick={showAlert}>Show alert</button>
         </div>
     );
 }
