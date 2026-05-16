@@ -3,6 +3,7 @@ import 'milligram';
 import {useState} from "react";
 import LoginForm from "./LoginForm";
 import MainPage from "./MainPage";
+import MeetingsPage from "./MeetingsPage";
 
 function App() {
     let [email, setEmail] = useState('');
@@ -37,17 +38,19 @@ function App() {
 
     return (
         <section>
-            {!isLoggedIn &&
-                <LoginForm
-                    email={email}
-                    validation={validation}
-                    handleEmail={handleEmail}
-                    login={login}/>
-            }
-            {isLoggedIn &&
-                <MainPage
-                email={email}
-                logout={logout}/>
+            {
+                isLoggedIn
+                    ? <section>
+                        <MainPage
+                            email={email}
+                            logout={logout}/>
+                        <MeetingsPage/>
+                    </section>
+                    : <LoginForm
+                        email={email}
+                        validation={validation}
+                        handleEmail={handleEmail}
+                        login={login}/>
             }
         </section>
     );
