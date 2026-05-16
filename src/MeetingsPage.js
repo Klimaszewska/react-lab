@@ -12,9 +12,22 @@ export default function MeetingsPage() {
 
     return (
         <div>
-            <h2>Classes ({meetings.length})</h2>
+            <button>Add a new meeting</button>
+
+            {
+                meetings.length === 0
+                && <div>No meetings yet</div>
+            }
+            {
+                meetings.length > 0
+                && <section>
+                    <h2>Classes ({meetings.length})</h2>
+                    <MeetingsList meetings={meetings}/>
+                </section>
+            }
+
             <NewMeetingForm onSubmit={(meeting) => handleNewMeeting(meeting)}/>
-            <MeetingsList meetings={meetings}/>
+
         </div>
     )
 }

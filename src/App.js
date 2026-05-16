@@ -2,7 +2,7 @@ import './App.css';
 import 'milligram';
 import {useState} from "react";
 import LoginForm from "./LoginForm";
-import MainPage from "./MainPage";
+import UserPanel from "./UserPanel";
 import MeetingsPage from "./MeetingsPage";
 
 function App() {
@@ -41,7 +41,7 @@ function App() {
             {
                 isLoggedIn
                     ? <section>
-                        <MainPage
+                        <UserPanel
                             email={email}
                             logout={logout}/>
                         <MeetingsPage/>
