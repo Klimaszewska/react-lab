@@ -2,8 +2,9 @@ import './App.css';
 import {useState} from "react";
 
 function App() {
-    let [email, setEmail] = useState('user@example.com');
+    let [email, setEmail] = useState('');
     let [validation, setValidation] = useState('');
+    let [isLoggedIn, setIsLoggedIn] = useState(false);
 
     function validateEmailLength(emailInput) {
         if (emailInput.length < 5) {
@@ -21,18 +22,34 @@ function App() {
         validateEmailLength(emailInput);
     }
 
-    function showAlert() {
-        alert("The email is: " + email);
+    function login() {
+        setIsLoggedIn(true);
+    }
+
+    function logout() {
+        setEmail('');
+        setValidation('');
+        setIsLoggedIn(false);
     }
 
     return (
-        <div>
-            <h1>Class enrollment system</h1>
-            <h2>Your email: {email}</h2>
-            <div>{validation}</div>
-            <input type="text" value={email} onChange={handleChange} />
-            <button onClick={showAlert}>Show alert</button>
-        </div>
+        <section>
+            {!isLoggedIn &&
+                <section>
+                    <h1>Class enrollment system</h1>
+                    <h2>Log in with your email: </h2>
+                    <div>{validation}</div>
+                    <input type="text" onChange={handleChange}/>
+                    <button disabled={!email} onClick={login}>Log in</button>
+                </section>
+            }
+            {isLoggedIn &&
+                <section>
+                    <h1>Welcome, {email}!</h1>
+                    <button onClick={logout}>Log out</button>
+                </section>
+            }
+        </section>
     );
 }
 
